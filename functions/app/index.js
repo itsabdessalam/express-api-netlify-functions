@@ -17,8 +17,8 @@ export default function expressApp(functionName) {
     logger = require("morgan"),
     helmet = require("helmet"),
     routes = require("./routes"),
-    app = express();
-
+    app = express(),
+    router = express.Router();
   // CORS
   app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -45,10 +45,7 @@ export default function expressApp(functionName) {
   app.use(cookieParser());
 
   // routes
-  app.use();
-
   app.use(routerBasePath, routes);
-
   // catch 404 and forward to error handler
   app.use((req, res, next) => {
     next(createError(404, `Cannot ${req.method} ${req.originalUrl}`));
