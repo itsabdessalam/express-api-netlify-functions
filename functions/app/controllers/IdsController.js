@@ -1,8 +1,8 @@
 module.exports = {
-  getMultipleViewIDs: (req, res) => {
+  getIDs: (req, res) => {
     const ids = [],
       { count } = req.params,
-      idsCount = parseInt(count, 10) < 30 ? parseInt(count, 10) : 30,
+      idsCount = parseInt(count, 10) < 100 ? parseInt(count, 10) : 100,
       random = () =>
         (
           Number(String(Math.random()).slice(2)) +
