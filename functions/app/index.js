@@ -3,10 +3,8 @@ export default function expressApp(functionName) {
       process.env.NODE_ENV === "dev"
         ? `/${functionName}`
         : `/.netlify/functions/${functionName}/`,
-    bodyParser = require("body-parser"),
     createError = require("http-errors"),
     express = require("express"),
-    cookieParser = require("cookie-parser"),
     logger = require("morgan"),
     helmet = require("helmet"),
     routes = require("./routes"),
@@ -28,17 +26,9 @@ export default function expressApp(functionName) {
   // security
   app.use(helmet());
 
-  // body-parser
-  app.use(bodyParser.json());
-  app.use(
-    bodyParser.urlencoded({
-      extended: false
-    })
-  );
-
+  // built-in middleware as body-parser
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
-  app.use(cookieParser());
 
   // routes
   app.use(routerBasePath, routes);
